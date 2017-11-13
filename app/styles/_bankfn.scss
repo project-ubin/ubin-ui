@@ -1,0 +1,46 @@
+.box-bank-fn {
+  // height: 16em;
+  background-color: $white;
+  padding: 1em;
+
+  button{
+  	margin-top: 1.75em;
+  	width: 100%;
+  	font-size: 1.2em;
+  	padding-top: 0.2em;
+  	padding-bottom: 0.2em;
+  }
+  .tab-section{
+  	border-bottom: 1px solid $darkblue;
+  	padding-bottom: .8em;
+  	.nav-pills {
+  		li {
+  			cursor: pointer;
+  			cursor: hand;
+  		}
+  	}
+  }
+  .tab-content{
+  	.row {
+  		margin-top: .6em;
+  		.radio-btn{
+  			margin-top: .6em;
+  		}
+  	}
+  	.tab-pane{
+  		label{
+  			font-size: 1.2em
+  		}
+  	}
+  }
+  a {
+  	color: $darkblue;
+  	font-size: 1.3em;
+  	padding: .2em 1.8em !important;
+  }
+  .active a {
+  	background-color: $darkblue !important;
+  	color: $white !important;
+  	border-radius: .4em;
+  }
+}

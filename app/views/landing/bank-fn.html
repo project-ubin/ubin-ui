@@ -1,0 +1,141 @@
+<div ng-controller="bankFnController">
+	<div class="tab-section">
+		<ul class="nav nav-pills">
+			<li class="active"><a data-toggle="tab" data-target="#transfer">Transfer</a></li>
+			<li ng-if="!adminView"><a data-toggle="tab" data-target="#pledge">Pledge</a></li>
+			<li ng-if="!adminView"><a data-toggle="tab" data-target="#redeem">Redeem</a></li>
+			<li ng-if="!adminView && platform === 'fabric'"><a data-toggle="tab" data-target="#funds">Move Funds</a></li>
+		</ul>
+	</div>
+	<div class="tab-content">
+		<div id="transfer" class="tab-pane fade in active">
+			<div class="row">
+				<div class="col-sm-8">
+					<label for="" class="">
+						Amount
+					</label>
+					<div class="">
+						<input class="form-control" type="number" ng-model="transfer.transactionAmount">
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<label for="" class="">Priority</label>
+					<div class="radio-btn">
+						<label ng-repeat="(key, value) in priorities" class="radio-inline">
+							<input type="radio" ng-model="transfer.priority" ng-value="{{key}}" name="transfer.priority">{{value}}
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-8">
+					<label for="" class="">To</label>
+					<select class="form-control" ng-model="transfer.receiver">
+						<option value="{{value.bic}}" ng-repeat="value in counterparties | orderBy: 'bic'">
+							<!-- ng-if="thisbank != value.stashName && value.bankName"> -->
+							{{bankNodes[value.bic].bankName}}
+						</option>
+					</select>
+				</div>
+				<div class="col-xs-3">
+					<button type="button" class="btn btn-success" ng-disabled="submitPressed" ng-click="submitTransfer()">
+						{{ (submitPressed == true) ? 'Submitting' : 'Submit' }}
+					</button>
+				</div>
+			</div>
+		</div>
+		<div id="pledge" class="tab-pane fade">
+			<div class="row">
+				<div class="col-sm-8">
+					<label for="" class="">Amount</label>
+					<input class="form-control" ng-model="pledge.transactionAmount" type="number">
+				</div>
+			</div>
+			<div class="row" ng-if="platform === 'fabric'">
+				<div class="col-sm-8">
+					<label for="" class="">Channel</label>
+					<select class="form-control" ng-model="pledge.channel">
+						<option value="{{value.channel}}" ng-repeat="value in counterparties | orderBy: 'bic'">
+							{{bankNodes[value.bic].shortName+ " Channel"}}
+						</option>
+					</select>
+				</div>
+				<div class="col-xs-3">
+					<button type="button" class="btn btn-success" ng-disabled="submitPressedPledge" ng-click="submitPledge()">
+						{{(submitPressedPledge == true) ? 'Submitting' : 'Submit' }}
+					</button>
+				</div>
+			</div>
+			<div class="row" ng-if="platform !== 'fabric'">
+				<div class="col-xs-3">
+					<button type="button" class="btn btn-success" ng-disabled="submitPressedPledge" ng-click="submitPledge()">
+						{{(submitPressedPledge == true) ? 'Submitting' : 'Submit' }}
+					</button>
+				</div>
+			</div>
+		</div>
+		<div id="redeem" class="tab-pane fade">
+			<div class="row">
+				<div class="col-sm-8">
+					<label for="" class="">Amount</label>
+					<input class="form-control" type="number" ng-model="redeem.transactionAmount">
+				</div>
+			</div>
+			<div class="row" ng-if="platform === 'fabric'">
+				<div class="col-sm-8">
+					<label for="" class="">Channel</label>
+					<select class="form-control" ng-model="redeem.channel">
+						<option value="{{value.channel}}" ng-repeat="value in counterparties | orderBy: 'bic'">
+							{{bankNodes[value.bic].shortName+ " Channel"}}
+						</option>
+					</select>
+				</div>
+				<div class="col-xs-3">
+					<button type="button" class="btn btn-success" ng-click="submitRedeem()">{{
+						(submitPressedRedeem == true) ? 'Submitting' : 'Submit' }}
+					</button>
+				</div>
+			</div>
+			<div class="row" ng-if="platform !== 'fabric'">
+				<div class="col-xs-3">
+					<button type="button" class="btn btn-success" ng-click="submitRedeem()">{{
+						(submitPressedRedeem == true) ? 'Submitting' : 'Submit' }}
+					</button>
+				</div>
+			</div>
+		</div>
+		<div id="funds" class="tab-pane fade">
+			<div class="row">
+				<div class="col-xs-6">
+					<label for="" class="">From</label>
+					<select class="form-control" ng-model="moveFunds.fromChannel">
+						<option value="{{value.channel}}" ng-repeat="value in counterparties | orderBy: 'bic'">
+							{{bankNodes[value.bic].shortName+ " Channel"}}
+						</option>
+					</select>
+				</div>
+				<div class="col-xs-6">
+					<label for="" class="">To</label>
+					<select class="form-control" ng-model="moveFunds.toChannel">
+						<option value="{{value.channel}}" ng-repeat="value in counterparties | orderBy: 'bic'">
+							{{bankNodes[value.bic].shortName+ " Channel"}}
+						</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-9">
+					<label for="" class="">Amount</label>
+					<div class="">
+						<input class="form-control" type="number" ng-model="moveFunds.amount">
+					</div>
+				</div>
+				<div class="col-xs-3">
+					<button type="button" class="btn btn-success" ng-disabled="submitPressedMove" ng-click="submitMove()">
+						{{ (submitPressedMove == true) ? 'Submitting' : 'Submit' }}
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

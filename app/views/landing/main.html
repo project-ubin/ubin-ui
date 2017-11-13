@@ -1,0 +1,21 @@
+<div ng-init="startSpinner()" ng-controller="mainController">
+	<span ng-if="parentVariable.showSpinner || parentVariable.balanceSpinner || parentVariable.balanceAllSpinner || parentVariable.incomingQueueSpinner || parentVariable.outgoingQueueSpinner" us-spinner="spinnerConfig"></span>
+	<div ng-class="{'overlay':parentVariable.showSpinner || parentVariable.balanceSpinner || parentVariable.balanceAllSpinner || parentVariable.incomingQueueSpinner || parentVariable.outgoingQueueSpinner}">
+
+		<div class="row flex-row">
+			<div class="col-xs-12 col-md-6">
+				<div ng-include src="'views/landing/balance-position.html'" class="box-balance box"></div>
+			</div>
+			<div class="col-xs-12 col-md-6">
+				<div ng-include src="'views/landing/bank-fn.html'" class="box box-bank-fn"></div>
+			</div>
+		</div>
+
+		<div ng-if="!adminView" ng-include src="'views/landing/queue.html'"></div>
+
+		<div ng-if="adminView" ng-include src="'views/landing/bank-balance.html'"></div>
+
+		<div ng-include src="'views/landing/transaction.html'"></div>
+
+	</div>
+</div>

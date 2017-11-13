@@ -1,0 +1,21 @@
+{
+  "name": "ubin-ui",
+  "version": "1.0.0",
+  "dependencies": {
+    "angular": "1.5.8",
+    "angular-ui-router": "^0.3.0",
+    "underscore": "^1.8.3",
+    "angular-spinner": "^1.0.1",
+    "ng-dialog": "^1.4.0",
+    "components-font-awesome": "^4.7.0",
+    "roboto-fontface": "^0.8.0",
+    "jquery": "^3.2.1",
+    "bootstrap": "3.2.0"
+  },
+  "resolutions": {
+    "angular": "1.5.8"
+  },
+  "devDependencies": {},
+  "appPath": "app",
+  "moduleName": "ubin-ui"
+}

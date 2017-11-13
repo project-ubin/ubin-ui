@@ -1,0 +1,115 @@
+$darkblue: #002060;
+$lightblue: #00B0F0;
+$midblue: #0033CC;
+$mutedgreen: #9BBB59;
+$mutedred: #E6B9B8;
+$lightgrey: #F2F2F2;
+$midgrey: #D9D9D9;
+$middarkgrey: #999999;
+$darkgrey: #595959;
+$white: #FFFFFF;
+$green: #00B050;
+$orange: #FFC000;
+
+
+html, body {
+  -webkit-overflow-scrolling: touch;
+  background-color: $midgrey;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+@media (min-width: 1200px) {
+	.container {
+		width: 95% !important;
+	}
+}
+
+.overlay {
+	background: #e9e9e9;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 0.5;
+	height:100%;
+	pointer-events: none;
+}
+
+.box {
+	margin-bottom: 1em;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+}
+
+.right-align{
+	text-align: right !important;
+}
+
+.btn-action.btn-md {
+	font-size: 1.1em;
+	padding: 0.2em 0.3em;
+}
+
+.flex-row {
+	display: flex;
+	flex-wrap: wrap;
+	[class*='col-'] {
+		display: flex;
+		flex-direction: column;
+		div {
+			flex: 1;
+		}
+	}
+	&.row:after, &.row:before {
+		display: flex;
+	}
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.flex-row > [class*='col-'] {
+	display: flex;
+	flex-direction: column;
+}
+.flex-row.row:after, 
+.flex-row.row:before {
+	display: flex;
+}
+
+.label {
+	font-size: 1em;
+	padding: 0.2em 0.5em;
+	line-height: 1.5;
+	text-transform: uppercase;
+	&.label-high-inverse {
+		background: none;
+		color: $midblue;
+	}
+	&.label-normal-inverse {
+		background: none;
+		color: $darkblue;
+	}
+	&.label-default-inverse {
+		background: none;
+		color: $middarkgrey;
+	}
+}
+
+.text-warning {
+	color: $orange;
+}
+
+.text-success {
+	color: $green;
+}
+
+.text-high {
+	color: $midblue;
+}
+
+.text-normal {
+	color: $darkblue;
+}
+
+.text-muted {
+	color: $middarkgrey;
+}

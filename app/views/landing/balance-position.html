@@ -1,0 +1,56 @@
+<div ng-controller="balancePositionController">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="balance">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{bankNodes[parentVariable.thisbank].bankName}}
+                <span class="caret" ng-class="{'caret-text':(parentVariable.thisbank != '')}"></span></button>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="bank in banklist" >
+                        <a ng-if="!(bank.centralBank || bank.regulator)" href="#/landing/{{bank.bic}}">{{bankNodes[bank.bic].bankName}}</a>
+                        <a ng-if="(bank.centralBank || bank.regulator)" href="#/admin">{{bankNodes[bank.bic].bankName}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 balance-label">
+            <div class="row">
+                <div class="col-md-2 col-xs-4 col-md-offset-2">
+                    BALANCE
+                </div>
+                <div class="col-md-6 balance-val right-align">
+                    {{balance | noFractionCurrency:currencySymbol}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="!(adminView || (platform == 'fabric'))">
+        <div class="col-md-12 balance-label">
+            <div class="row">
+                <div class="col-md-2 col-xs-4 col-md-offset-2">
+                    POSITION
+                </div>
+                <div class="col-md-6 balance-val right-align" ng-class="{'balance-val-neg': position < 0,
+                        'balance-val-pos': position > balance,'balance-val-zero': position === 0}">
+                    {{position | noFractionCurrency:currencySymbol}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div ng-if="platform == 'fabric'" class="row box-channel-balance">
+        <div class="col-sm-6 col-xs-12" ng-repeat="bankChannel in bankChannelList | orderBy: 'counterparty'">
+            <div class="row">
+                <div class="col-sm-6 channel-text">
+                    {{bankNodes[bankChannel.counterparty].shortName+" Channel"}}
+                </div>
+                <div class="col-sm-6 balance-text">
+                    {{bankChannel.amount | noFractionCurrency:currencySymbol}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

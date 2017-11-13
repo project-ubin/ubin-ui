@@ -1,0 +1,56 @@
+<div class="row" ng-controller="transactionController">
+	<div class="col-md-12">
+		<div class="box table-box-section">
+			<div class="table-heading transactions">
+				TRANSACTION HISTORY
+			</div>
+			<table class="table-striped table table-row-data ">
+				<thead>
+					<tr>
+						<th>Requested Date</th>
+						<th>Updated Date</th>
+						<th>Trans ID</th>
+						<th>Type</th>
+						<th>From</th>
+						<th>To</th>
+						<th>Amount</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tbody>
+						<tr ng-repeat="tx in allTransactions | limitTo: 10 | orderBy: ['-updatedDate']">
+							<td>
+								{{tx.requestedDate | date:'dd/MM/yyyy hh:mm:ss'}}
+							</td>
+							<td>
+								{{tx.updatedDate | date:'dd/MM/yyyy hh:mm:ss'}}
+							</td>
+							<td>
+								{{tx.transId | limitTo: 6}}
+							</td>
+							<td class="text-capitalize">
+								<span ng-if="platform === 'fabric'">{{typeMap[tx.transType]}}</span>
+								<span ng-if="platform !== 'fabric'">{{tx.transType}}</span>
+							</td>
+							<td>
+								<span ng-if="tx.transType === 'moveinfund' || tx.transType === 'moveoutfund'">{{mapChannelName(tx.sender)}}</span>
+								<span ng-if="tx.transType !== 'moveinfund' && tx.transType !== 'moveoutfund'">{{tx.sender}}</span>
+							</td>
+							<td>
+								<span ng-if="tx.transType === 'moveinfund' || tx.transType === 'moveoutfund'">{{mapChannelName(tx.receiver)}}</span>
+								<span ng-if="tx.transType !== 'moveinfund' && tx.transType !== 'moveoutfund'">{{tx.receiver}}</span>
+							</td>
+							<td class="right-align">
+								{{tx.transactionAmount | noFractionCurrency:currencySymbol}}
+							</td>
+							<td class="text-uppercase">
+								{{tx.status}}
+							</td>
+						</tr>
+					</tbody>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

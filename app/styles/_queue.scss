@@ -1,0 +1,73 @@
+.table-box-section {
+	border: 1px solid #EDF1F2;
+	background-color: #FFFFFF;
+	.table-heading {
+		align-content: center;
+		position: relative;
+		padding: 0.5em 0.8em;
+		height: 3.5em;
+		background-color: $white;
+		color: $darkblue;
+		font-size: 1.3em;
+		letter-spacing: 0.1em;
+		&.transactions {
+			height: auto;
+		}
+    // border-bottom: 1px solid $lightgrey;
+    .btn {
+    	letter-spacing: 0;
+    	font-size: 0.9em;
+    	padding: 0.2em 0.6em;
+    }
+    .netting-status{
+    	display: block;
+    	position: absolute;
+    	top: 70%;
+    	font-size: .9em;
+    	letter-spacing: 0;
+    }
+  }
+  th, td{
+  	text-align: center;
+  	font-size: 1em;
+  }
+  thead > tr > th {
+  	padding: 0.5em;
+  }
+  tbody > tr > td {
+  	padding: 0.5em;
+  	&.right-align {
+  		padding-right: 0.6em;
+  	}
+  }
+  th {
+  	font-size: 0.9em;
+  	color: $darkgrey;
+  }
+  .table-striped>tbody>tr:nth-of-type(odd) {
+  	background-color: $lightgrey;
+  }
+}
+
+.ngdialog-content{
+	background-color: $white!important;
+}
+.mas-modal {
+	.modal-header {
+		padding: .3em .5em 0.2em 0.5em;
+		color: $darkblue;
+		border-bottom: 1px solid #e5e5e5;
+		font-size: 1.5em;
+	}
+	.modal-message{
+		font-size: 1.2em;
+		margin-bottom: 2em;
+		color: $darkblue;
+	}
+
+	button{
+		width: 100%;
+		font-size: 1.1em;
+		min-width: min-content;
+	}
+}

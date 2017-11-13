@@ -1,0 +1,50 @@
+.top-panel {
+	height: 4em;
+	margin-bottom: 1em;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+	border-bottom: $darkblue 2pt solid;
+	background-color: $white;
+}
+
+.left-logo{
+	display: inline;
+	float: left;
+	margin-left: 0.5em;
+	span {
+		margin-left: 0.3em;
+		font-size: 1.4em;
+		vertical-align: bottom;
+	}
+}
+
+.right-logo{
+	display: inline;
+	float: right;
+	margin-right: 0.5em;
+	span {
+		vertical-align: -0.6em;
+		margin-right: 0.5em;
+		font-style: italic;
+	}
+}
+
+.logo {
+	padding-left: 0.1em;
+	padding-right: 0.1em;
+	&.ubin {
+		margin-top: 0.8em;
+		height: 60%;
+	}
+	&.acn {
+		height: 50%;
+		margin-top: 0.3em;
+	}
+	&.mas {
+		height: 80%;
+		margin-top: 0.1em;
+	}
+	&.abs {
+		height: 60%;
+		margin-top: 0.5em;
+	}
+}

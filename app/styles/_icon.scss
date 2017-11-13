@@ -1,0 +1,43 @@
+.icon {
+    display: inline-flex;
+    width: 7vh;
+    height: 4vh;
+    background-size: 3vh;
+    bottom: 3vw;
+}
+
+.icon-acn {
+    background-image: url(../img/acn_black.png);
+    background-repeat: no-repeat;
+    position: relative;
+    height: 100%;
+    width: 20%;
+}
+
+.icon-ubin {
+    background-image: url(../img/ubin.png);
+    background-repeat: no-repeat;
+    position: relative;
+    width: 20%;
+    height: 100%;
+    background-size: 100%;
+}
+
+.icon-mas {
+    background-image: url(../img/mas.png);
+    background-repeat: no-repeat;
+    position: relative;
+    height: 6vh;
+    width: 10vh;
+    justify-content: flex-start;
+}
+
+.icon-abs {
+    background-image: url(../img/abs.png);
+    background-repeat: no-repeat;
+    position: relative;
+    height: 5.3vh;
+    width: 13vh;
+    justify-content: flex-start;
+}
+

@@ -1,0 +1,111 @@
+<div class="row flex-row" ng-controller="queueController">
+	<div class="col-xs-12 col-md-6">
+		<div class="box table-box-section">
+			<div class="table-heading" showNetting="!showNetting">
+				<div class="row">
+					<div class="col-md-5">
+						OUTGOING QUEUE
+					</div>
+					<div class="col-md-7">
+						<div class="right-align">
+							<strong class="btn btn-action btn-primary" ng-click="settleQueue()"><i class="fa fa-step-forward" aria-hidden="true"></i> Settle Queues</strong>
+							<strong class="btn btn-action btn-success" ng-if="platform !== 'quorum'" ng-click="executeNetting()"><i class="fa fa-puzzle-piece" aria-hidden="true"></i> Execute Netting</strong>
+							<strong class="btn btn-action btn-success" ng-if="platform === 'quorum'" ng-click="queryNetting()"><i class="fa fa-refresh" aria-hidden="true"></i> {{ queryNettingPressed ? 'Stop Querying' : 'Query Netting' }}</strong>
+						</div>
+					</div>
+				</div>
+
+				<div class="row" ng-if="nettingStatus">
+					<div class="col-md-12 right-align netting-status">
+						Netting Status: <strong class="text-uppercase">{{nettingStatus}}</strong>
+					</div>
+				</div>
+			</div>
+			<table class="table-striped table table-row-data">
+				<thead>
+					<tr>
+						<th>Time</th>
+						<!-- <th>Trans ID</th> -->
+						<th>Receiver</th>
+						<th>Amount</th>
+						<th>Status</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="queue in outgoingQueue | orderBy: ['-priority', 'requestedDate']">
+						<td ng-class="{'text-muted': queue.status === 'hold' || queue.status === 'HOLD'}">
+						<!-- <td ng-class="{'text-muted': queue.status === 'hold'}"> -->
+							{{queue.requestedDate | date:'hh:mm:ss'}}
+						</td>
+          	<!-- <td ng-class="{'text-muted': queue.status === 'hold'}">
+              {{queue.transId | limitTo: 6}}
+            </td> -->
+            <td ng-class="{'text-muted': queue.status === 'hold' || queue.status === 'HOLD'}">
+            <!-- <td ng-class="{'text-muted': queue.status === 'hold'}"> -->
+            	{{queue.receiver}}
+            </td>
+            <td class="right-align" ng-class="{'text-muted': queue.status === 'hold'}">
+            	<strong>{{queue.transactionAmount | noFractionCurrency:currencySymbol}}</strong>
+            </td>
+            <td>
+            	<span class="label" ng-if="queue.status === 'active' || queue.status === 'ACTIVE' || queue.status === '0'" ng-class="queue.priority ? 'label-high-inverse' : 'label-normal-inverse'">
+            	<!-- <span class="label" ng-if="queue.status === 'active'" ng-class="queue.priority ? 'label-high-inverse' : 'label-normal-inverse'"> -->
+            		{{priorities[queue.priority]}}
+            	</span>
+            	<span class="label label-default-inverse" ng-if="queue.status === 'hold' || queue.status === 'HOLD'">
+            		HOLD
+            	</span>
+            </td>
+            <td>
+            	<a ng-click="updatePriority(queue)" class="btn btn-md btn-action btn-default" title="Update Priority">
+            		<i ng-if="queue.priority === 0" class="fa fa-arrow-up text-high" aria-hidden="true"></i>
+            		<i ng-if="queue.priority === 1" class="fa fa-arrow-down text-normal" aria-hidden="true"></i>
+            		<!-- <i class="fa text-high" ng-class="queue.priority ? 'fa-arrow-down text-normal' : 'fa-arrow-up text-high'" aria-hidden="true"></i> -->
+            	</a>
+            	<a ng-click="updateStatus(queue)" class="btn btn-md btn-action btn-default" title="Update Status">
+            		<i ng-if="queue.status === 'hold' || queue.status === 'HOLD' || queue.status === '2'" class="fa fa-play text-success" aria-hidden="true"></i> 
+            		<i ng-if="queue.status === 'active' || queue.status === 'ACTIVE' || queue.status === '0'" class="fa fa-pause text-warning" aria-hidden="true"></i>
+            		<!-- <i class="fa fa-play" ng-class="queue.status === 'active' ? 'fa-pause text-warning' : 'fa-play text-success'" aria-hidden="true"></i> -->
+            	</a>
+            	<a ng-click="showModalWindow(queue)" class="btn btn-md btn-action btn-default" title="Cancel">
+            		<i class="fa fa-times fa-lg text-danger" aria-hidden="true"></i>
+            	</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+  	<div class="box table-box-section">
+  		<div class="table-heading">INCOMING QUEUE</div>
+  		<table class="table-striped table table-row-data ">
+  			<thead>
+  				<tr>
+  					<th>Time</th>
+  					<!-- <th>Trans ID</th> -->
+  					<th>Sender</th>
+  					<th>Amount</th>
+  				</tr>
+  			</thead>
+  			<tbody>
+  				<tr ng-repeat="queue in incomingQueue | orderBy: ['requestedDate']">
+  					<td>
+  						{{queue.requestedDate | date:'hh:mm:ss'}}
+  					</td>
+        		<!-- <td>
+	            {{queue.transId | limitTo: 6}}
+	          </td> -->
+	          <td>
+	          	{{queue.sender}}
+	          </td>
+	          <td class="right-align">
+	          	{{queue.transactionAmount | noFractionCurrency:currencySymbol}}
+	          </td>
+	        </tr>
+	      </tbody>
+	    </table>
+	  </div>
+	</div>
+</div>

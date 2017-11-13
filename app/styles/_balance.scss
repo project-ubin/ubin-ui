@@ -1,0 +1,92 @@
+.box-balance {
+	background-color: $darkblue;
+  // height: 16em;
+  color: $white;
+  padding: 1em;
+  .balance{
+  	.btn-primary{
+  		background-color: transparent;
+  		border: 0;
+  		border-bottom: 1px solid #FFFFFF;
+  		color: #FFFFFF;
+  		font-size: 1.9em;
+      // margin-left: .5em;
+      width: 100%;
+      height: 1.65em;
+      text-align: start;
+      padding-top: 0px;
+      border-radius: 0;
+      &:focus, :active{
+      	border: 0;
+      	border-bottom: 1px solid $white;
+      	box-shadow: none;
+      }
+      .caret {
+      	display: inline-block;
+      	width: 0;
+      	height: 0;
+      	vertical-align: middle;
+      	border-top: .6em dashed;
+      	border-right: .4em solid transparent;
+      	border-left: .4em solid transparent;
+      	float: right;
+      }
+      .caret-text{
+      	margin-top: .35em;
+      }
+    }
+    ul{
+    	width: 92%;
+    	margin-left: 4.5%;
+    	li{
+    		a{
+    			color: $darkblue;
+    			font-size: 1.3em;
+    		}
+    	}
+    }
+  }
+  &:first-child .balance-label{
+  	margin-bottom: 1em;
+  	color: $midgrey;
+  }
+  .balance-label{
+  	top: 1.5em;
+  	font-size: 1.3em;
+  }
+
+  .balance-val{
+  	font-size: 1.5em;
+  	bottom: .3em;
+  	color: $white;
+  }
+
+  .balance-val-neg{
+  	color: $mutedred;
+  }
+
+  .balance-val-pos{
+  	color: $mutedgreen;
+  }
+
+  .balance-val-zero{
+  	color: $white;
+  }
+
+  .box-channel-balance{
+  	padding: 1em 4em 1em 2em;
+  	.channel-text{
+  		text-align: right;
+  		color:$midgrey;
+  		font-size: 1.1em;
+  		top: .2em;
+  	}
+  	.balance-text{
+  		text-align: left;
+  		font-size: 1.3em;
+  		border-left: solid 1px $white;
+  	}
+  }
+
+}
+
